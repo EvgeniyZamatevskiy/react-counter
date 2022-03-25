@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
 import { Counter } from './components/Counter/Counter'
 import { Settings } from './components/Settings/Settings'
+import { Modal } from './components/UI/Modal/Modal'
+import './App.css'
 
 export const App = () => {
 
@@ -9,20 +10,21 @@ export const App = () => {
   const [maxValue, setMaxValue] = useState<number>(5)
   const [startValue, setStartValue] = useState<number>(0)
   const [error, setError] = useState<string>('')
+  const [visibleModal, setVisibleModal] = useState<boolean>(false)
 
   return (
-    <>
-      <Routes>
-        <Route path={'/'} element={<Counter
-          count={count}
-          maxValue={maxValue}
-          setCount={setCount}
-          startValue={startValue}
-          setMaxValue={setMaxValue}
-          setStartValue={setStartValue}
-        />} />
-
-        <Route path={'/settings'} element={<Settings
+    <div className='App'>
+      <Counter
+        count={count}
+        maxValue={maxValue}
+        setCount={setCount}
+        startValue={startValue}
+        setMaxValue={setMaxValue}
+        setStartValue={setStartValue}
+        setVisibleModal={setVisibleModal}
+      />
+      <Modal visible={visibleModal} setVisible={setVisibleModal}>
+        <Settings
           error={error}
           maxValue={maxValue}
           startValue={startValue}
@@ -30,8 +32,8 @@ export const App = () => {
           setError={setError}
           setMaxValue={setMaxValue}
           setStartValue={setStartValue}
-        />} />
-      </Routes>
-    </>
+          setVisibleModal={setVisibleModal} />
+      </Modal>
+    </div>
   )
 }

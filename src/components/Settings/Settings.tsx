@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Button } from '../UI/Button/Button'
 import s from './Settings.module.css'
 
 type SettingsPropsType = {
@@ -10,11 +10,10 @@ type SettingsPropsType = {
    setError: (error: string) => void
    setStartValue: (startValue: number) => void
    setCount: (count: number) => void
+   setVisibleModal: (visibleModal: boolean) => void
 }
 
-export const Settings: FC<SettingsPropsType> = ({ maxValue, startValue, error, setMaxValue, setError, setStartValue, setCount }) => {
-
-   const navigate = useNavigate()
+export const Settings: FC<SettingsPropsType> = ({ maxValue, startValue, setVisibleModal, error, setMaxValue, setError, setStartValue, setCount }) => {
 
    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.currentTarget.valueAsNumber >= 0) {
@@ -34,13 +33,13 @@ export const Settings: FC<SettingsPropsType> = ({ maxValue, startValue, error, s
       }
    }
 
-   const onClickSetHandler = () => {
+   const applyHandler = () => {
       if (maxValue !== startValue && startValue < maxValue) {
          setCount(startValue)
          setMaxValue(maxValue)
          localStorage.setItem('maxValue', JSON.stringify(maxValue))
          localStorage.setItem('startValue', JSON.stringify(startValue))
-         navigate('/')
+         setVisibleModal(false)
       } else {
          setError('Incorrect value!')
       }
@@ -76,7 +75,7 @@ export const Settings: FC<SettingsPropsType> = ({ maxValue, startValue, error, s
                value={startValue}
                onChange={onChangeStartValueHandler} />
          </div>
-         <button disabled={!!error} onClick={onClickSetHandler}>set</button>
+         <Button disabled={!!error} onClick={applyHandler}>apply</Button>
          <div className={s.errorMessage}>{error}</div>
       </div>
    )
