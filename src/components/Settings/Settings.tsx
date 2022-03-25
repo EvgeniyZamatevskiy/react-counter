@@ -38,11 +38,27 @@ export const Settings: FC<SettingsPropsType> = ({ maxValue, startValue, error, s
       if (maxValue !== startValue && startValue < maxValue) {
          setCount(startValue)
          setMaxValue(maxValue)
+         localStorage.setItem('maxValue', JSON.stringify(maxValue))
+         localStorage.setItem('startValue', JSON.stringify(startValue))
          navigate('/')
       } else {
          setError('Incorrect value!')
       }
    }
+
+   useEffect(() => {
+      let initStartValue = localStorage.getItem('startValue')
+      if (initStartValue) {
+         let newStartValue = JSON.parse(initStartValue)
+         setStartValue(newStartValue)
+      }
+
+      let initMaxValue = localStorage.getItem('maxValue')
+      if (initMaxValue) {
+         let newMaxValue = JSON.parse(initMaxValue)
+         setMaxValue(newMaxValue)
+      }
+   }, [])
 
    return (
       <div>

@@ -7,9 +7,10 @@ type CounterPropsType = {
    maxValue: number
    startValue: number
    setCount: (count: number) => void
+   setMaxValue: (maxValue: number) => void
 }
 
-export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, startValue }) => {
+export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, startValue, setMaxValue }) => {
 
    const navigate = useNavigate()
 
@@ -20,6 +21,20 @@ export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, start
    const onClickResetHandler = () => {
       setCount(startValue)
    }
+
+   useEffect(() => {
+      let initMaxValue = localStorage.getItem('maxValue')
+      if (initMaxValue) {
+         let newMaxValue = JSON.parse(initMaxValue)
+         setMaxValue(newMaxValue)
+      }
+
+      let initStartValue = localStorage.getItem('startValue')
+      if (initStartValue) {
+         let newStartValue = JSON.parse(initStartValue)
+         setCount(newStartValue)
+      }
+   }, [])
 
    return (
       <div>
