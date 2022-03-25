@@ -8,17 +8,18 @@ type CounterPropsType = {
    startValue: number
    setCount: (count: number) => void
    setMaxValue: (maxValue: number) => void
+   setStartValue: (startValue: number) => void
 }
 
-export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, startValue, setMaxValue }) => {
+export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, startValue, setMaxValue, setStartValue }) => {
 
    const navigate = useNavigate()
 
-   const onClickIncHandler = () => {
+   const incHandler = () => {
       setCount(count + 1)
    }
 
-   const onClickResetHandler = () => {
+   const resetHandler = () => {
       setCount(startValue)
    }
 
@@ -33,6 +34,7 @@ export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, start
       if (initStartValue) {
          let newStartValue = JSON.parse(initStartValue)
          setCount(newStartValue)
+         setStartValue(newStartValue)
       }
    }, [])
 
@@ -40,8 +42,8 @@ export const Counter: FC<CounterPropsType> = ({ count, setCount, maxValue, start
       <div>
          <div className={count === maxValue ? s.errorMessage : ''}>{count}</div>
 
-         <button disabled={count === maxValue} onClick={onClickIncHandler}>inc</button>
-         <button disabled={!count} onClick={onClickResetHandler}>reset</button>
+         <button disabled={count === maxValue} onClick={incHandler}>inc</button>
+         <button disabled={count === startValue} onClick={resetHandler}>reset</button>
          <button onClick={() => navigate('/settings')}>set</button>
       </div>
    )

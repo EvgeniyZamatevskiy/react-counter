@@ -19,6 +19,7 @@ export const App = () => {
           setCount={setCount}
           startValue={startValue}
           setMaxValue={setMaxValue}
+          setStartValue={setStartValue}
         />} />
 
         <Route path={'/settings'} element={<Settings
