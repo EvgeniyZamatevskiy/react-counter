@@ -1,20 +1,35 @@
 import React, { useState } from 'react'
-import { Counter } from './components/Counter/Counter'
-import { Settings } from './components/Settings/Settings'
-import { Modal } from './components/UI/Modal/Modal'
+import { Counter } from './newComponents/Counter/Counter'
+import { Settings } from './newComponents/Settings/Settings'
 import './App.css'
 
 export const App = () => {
 
+  // const [count, setCount] = useState<number>(0)
+  // const [maxValue, setMaxValue] = useState<number>(5)
+  // const [startValue, setStartValue] = useState<number>(0)
+  // const [error, setError] = useState<string>('')
+  // const [visibleModal, setVisibleModal] = useState<boolean>(false)
+
   const [count, setCount] = useState<number>(0)
-  const [maxValue, setMaxValue] = useState<number>(5)
-  const [startValue, setStartValue] = useState<number>(0)
-  const [error, setError] = useState<string>('')
-  const [visibleModal, setVisibleModal] = useState<boolean>(false)
+
+  const increment = () => {
+    setCount(count + 1)
+  }
+
+  const resetCounter = () => {
+    setCount(0)
+  }
 
   return (
     <div className='App'>
       <Counter
+        count={count}
+        increment={increment}
+        resetCounter={resetCounter}
+      />
+      <Settings />
+      {/* <Counter
         count={count}
         maxValue={maxValue}
         setCount={setCount}
@@ -33,7 +48,7 @@ export const App = () => {
           setMaxValue={setMaxValue}
           setStartValue={setStartValue}
           setVisibleModal={setVisibleModal} />
-      </Modal>
+      </Modal> */}
     </div>
   )
 }
