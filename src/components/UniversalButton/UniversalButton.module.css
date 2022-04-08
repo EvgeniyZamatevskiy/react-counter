@@ -1,0 +1,10 @@
+.universalButton {
+   height: 50px;
+   width: 100px;
+   background-color: rgb(223, 214, 255);
+   border-radius: 10px;
+   color: #222;
+   font-size: 2em;
+   font-weight: bold;
+   cursor: pointer;
+}

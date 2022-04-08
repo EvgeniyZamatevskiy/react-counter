@@ -1,5 +1,12 @@
 .App {
-   margin-top: 250px;
+   height: 100vh;
+   background: #222;
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
+   align-items: center;
+}
+
+.disabled {
+   opacity: 0.3;
+   cursor: default;
 }

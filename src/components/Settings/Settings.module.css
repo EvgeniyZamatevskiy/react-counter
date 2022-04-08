@@ -1,8 +1,23 @@
-.errorInput {
-   border: 2px solid red;
-   background-color: rgb(255, 166, 166);
+.settings {
+   height: 330px;
+   width: 360px;
+   border: 2px solid rgb(223, 214, 255);
+   border-radius: 15px;
+   margin-right: 50px;
+   color: rgb(223, 214, 255);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
-.errorMessage {
-   color: red;
+.control {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 90%;
+   height: 35%;
+   margin-top: 15px;
+   border: 2px solid rgb(223, 214, 255);
+   border-radius: 15px;
 }

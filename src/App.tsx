@@ -1,54 +1,66 @@
-import React, { useState } from 'react'
-import { Counter } from './newComponents/Counter/Counter'
-import { Settings } from './newComponents/Settings/Settings'
+import React, { useEffect, useState } from 'react'
+import { Counter } from './components/Counter/Counter'
+import { Settings } from './components/Settings/Settings'
 import './App.css'
 
 export const App = () => {
 
-  // const [count, setCount] = useState<number>(0)
-  // const [maxValue, setMaxValue] = useState<number>(5)
-  // const [startValue, setStartValue] = useState<number>(0)
-  // const [error, setError] = useState<string>('')
-  // const [visibleModal, setVisibleModal] = useState<boolean>(false)
+  useEffect(() => {
+    let counterSettings = localStorage.getItem('counterSettings')
+    if (counterSettings) {
+      let values = JSON.parse(counterSettings)
+      setStartValue(values.startValue)
+      setCounterValue(values.startValue)
+      setMaxValue(values.maxValue)
+    }
+  }, [])
 
-  const [count, setCount] = useState<number>(0)
+  const [startValue, setStartValue] = useState(0)
+  const [maxValue, setMaxValue] = useState(5)
+  const [counterValue, setCounterValue] = useState(startValue)
+  const [settingsActive, setSettingsActive] = useState(false)
 
-  const increment = () => {
-    setCount(count + 1)
+  const increaseCounterValue = () => {
+    setCounterValue(counterValue + 1)
   }
 
-  const resetCounter = () => {
-    setCount(0)
+  const resetCounterValue = () => {
+    setCounterValue(startValue)
+  }
+
+  const onChangeMaxValue = (newMaxValue: number) => {
+    setCounterValue(0)
+    setSettingsActive(true)
+    setMaxValue(newMaxValue)
+  }
+
+  const onChangeStartValue = (newStartValue: number) => {
+    setStartValue(newStartValue)
+    setSettingsActive(true)
+  }
+
+  const onSetButtonClick = () => {
+    localStorage.setItem('counterSettings', JSON.stringify({ startValue: startValue, maxValue: maxValue }))
+    setCounterValue(startValue)
+    setSettingsActive(false)
   }
 
   return (
     <div className='App'>
-      <Counter
-        count={count}
-        increment={increment}
-        resetCounter={resetCounter}
-      />
-      <Settings />
-      {/* <Counter
-        count={count}
-        maxValue={maxValue}
-        setCount={setCount}
+      <Settings
         startValue={startValue}
-        setMaxValue={setMaxValue}
-        setStartValue={setStartValue}
-        setVisibleModal={setVisibleModal}
-      />
-      <Modal visible={visibleModal} setVisible={setVisibleModal}>
-        <Settings
-          error={error}
-          maxValue={maxValue}
-          startValue={startValue}
-          setCount={setCount}
-          setError={setError}
-          setMaxValue={setMaxValue}
-          setStartValue={setStartValue}
-          setVisibleModal={setVisibleModal} />
-      </Modal> */}
+        maxValue={maxValue}
+        settingsActive={settingsActive}
+        onChangeMaxValue={onChangeMaxValue}
+        onChangeStartValue={onChangeStartValue}
+        onSetButtonClick={onSetButtonClick} />
+      <Counter
+        increaseCounterValue={increaseCounterValue}
+        resetCounterValue={resetCounterValue}
+        counterValue={counterValue}
+        maxValue={maxValue}
+        startValue={startValue}
+        settingsActive={settingsActive} />
     </div>
   )
 }

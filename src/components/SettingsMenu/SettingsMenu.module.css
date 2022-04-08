@@ -1,0 +1,56 @@
+.settingsWrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width: 90%;
+   height: 50%;
+   color: #222;
+   font-size: 4em;
+   font-weight: bold;
+   background-color: rgb(223, 214, 255);
+   border-radius: 15px;
+}
+
+.maxWarning {
+   color: red;
+}
+
+.inputItem {
+   display: flex;
+   justify-content: space-between;
+   height: 50px;
+}
+
+.inputItem span {
+   display: inline-block;
+   font-size: 25px;
+   margin-left: 20px;
+}
+
+.inputItem input {
+   display: inline-block;
+   height: 30px;
+   width: 33%;
+   font-size: 21px;
+   font-weight: bold;
+   text-align: center;
+   border: 3px solid rgb(223, 214, 255);
+   border-radius: 10px;
+   margin-right: 20px;
+   outline: none;
+}
+
+.inputItem input.error {
+   background-color: rgb(255, 200, 200);
+   border: 3px solid red;
+}
+
+@media (max-width: 1023px) {
+   .App {
+      flex-direction: column;
+   }
+
+   .counter {
+      margin: 40px 0 10px 0;
+   }
+}

@@ -1,0 +1,21 @@
+.output {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 90%;
+   height: 50%;
+   color: #222;
+   font-size: 4em;
+   font-weight: bold;
+   background-color: rgb(223, 214, 255);
+   border-radius: 15px;
+}
+
+.settingsUpdatingMessage {
+   font-size: 27px;
+   text-align: center;
+}
+
+.maxWarning {
+   color: red;
+}
