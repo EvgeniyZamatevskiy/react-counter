@@ -1,48 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Counter } from './components/Counter/Counter'
 import { Settings } from './components/Settings/Settings'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppRootType } from './redux/store'
+import { InitialStateType, onCounterValueChangeAC, onChangeMaxValueAC, onChangeStartValueAC, onSetButtonClickAC } from './redux/counterReducer'
 import './App.css'
 
 export const App = () => {
 
-  useEffect(() => {
-    let counterSettings = localStorage.getItem('counterSettings')
-    if (counterSettings) {
-      let values = JSON.parse(counterSettings)
-      setStartValue(values.startValue)
-      setCounterValue(values.startValue)
-      setMaxValue(values.maxValue)
-    }
-  }, [])
-
-  const [startValue, setStartValue] = useState(0)
-  const [maxValue, setMaxValue] = useState(5)
-  const [counterValue, setCounterValue] = useState(startValue)
-  const [settingsActive, setSettingsActive] = useState(false)
+  const dispatch = useDispatch()
+  const { counterValue, startValue, maxValue, settingsIsActive } = useSelector<AppRootType, InitialStateType>(state => state.counter)
 
   const increaseCounterValue = () => {
-    setCounterValue(counterValue + 1)
+    dispatch(onCounterValueChangeAC(counterValue + 1))
   }
 
   const resetCounterValue = () => {
-    setCounterValue(startValue)
+    dispatch(onCounterValueChangeAC(startValue))
   }
 
   const onChangeMaxValue = (newMaxValue: number) => {
-    setCounterValue(0)
-    setSettingsActive(true)
-    setMaxValue(newMaxValue)
+    dispatch(onChangeMaxValueAC(newMaxValue))
   }
 
   const onChangeStartValue = (newStartValue: number) => {
-    setStartValue(newStartValue)
-    setSettingsActive(true)
+    dispatch(onChangeStartValueAC(newStartValue))
   }
 
   const onSetButtonClick = () => {
-    localStorage.setItem('counterSettings', JSON.stringify({ startValue: startValue, maxValue: maxValue }))
-    setCounterValue(startValue)
-    setSettingsActive(false)
+    dispatch(onSetButtonClickAC())
   }
 
   return (
@@ -50,7 +36,7 @@ export const App = () => {
       <Settings
         startValue={startValue}
         maxValue={maxValue}
-        settingsActive={settingsActive}
+        settingsActive={settingsIsActive}
         onChangeMaxValue={onChangeMaxValue}
         onChangeStartValue={onChangeStartValue}
         onSetButtonClick={onSetButtonClick} />
@@ -60,7 +46,7 @@ export const App = () => {
         counterValue={counterValue}
         maxValue={maxValue}
         startValue={startValue}
-        settingsActive={settingsActive} />
+        settingsActive={settingsIsActive} />
     </div>
   )
 }

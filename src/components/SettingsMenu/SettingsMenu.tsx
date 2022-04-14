@@ -25,7 +25,7 @@ export const SettingsMenu: FC<SettingsMenuPropsType> = (props) => {
          <div className={s.inputItem}>
             <span>max value: </span>
             <input
-               className={error ? ` ${s.error}` : ''}
+               className={error ? `${s.error}` : ''}
                type='number'
                value={props.maxValue}
                onChange={onChangeMaxValueHandler} />
@@ -33,7 +33,7 @@ export const SettingsMenu: FC<SettingsMenuPropsType> = (props) => {
          <div className={s.inputItem}>
             <span>start value: </span>
             <input
-               className={error ? ` ${s.error}` : ''}
+               className={error ? `${s.error}` : ''}
                type='number'
                value={props.startValue}
                onChange={onChangeStartValueHandler} />
