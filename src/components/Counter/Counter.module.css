@@ -18,7 +18,7 @@
 .control {
    display: flex;
    align-items: center;
-   justify-content: center;
+   justify-content: space-evenly;
    width: 90%;
    height: 35%;
    margin-top: 15px;

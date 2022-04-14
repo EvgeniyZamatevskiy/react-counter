@@ -21,7 +21,7 @@ export const SettingsMenu: FC<SettingsMenuPropsType> = (props) => {
    }
 
    return (
-      <div className={`${s.settingsWrapper} ${props.startValue === props.maxValue ? s.maxWarning : ''}`}>
+      <div className={s.settingsWrapper}>
          <div className={s.inputItem}>
             <span>max value: </span>
             <input

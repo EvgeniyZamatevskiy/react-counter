@@ -9,10 +9,13 @@ type CounterOutputPropsType = {
 }
 
 export const CounterOutput: FC<CounterOutputPropsType> = (props) => {
+
+   const error = props.startValue >= props.maxValue || props.startValue < 0
+
    return (
       <div className={`${s.output} ${props.counterValue === props.maxValue ? s.maxWarning : ''}`}>
          {
-            props.startValue >= props.maxValue || props.startValue < 0
+            error
                ? <div className={!props.settingsActive ? `${s.settingsUpdatingMessage} ${s.maxWarning}` : ''}>
                   {!props.settingsActive ? 'incorrect value!' : props.counterValue}
                </div>

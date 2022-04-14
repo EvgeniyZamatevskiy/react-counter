@@ -2,7 +2,7 @@ import { AppRootType } from './store'
 
 // link to article: https://medium.com/@jrcreencia/persisting-redux-state-to-local-storage-f81eb0b90e7e
 
-//* saving settings to localStorage function =======================================================================>>
+//* saving settings to localStorage function
 // export const saveState = (state) => {
 //     try {
 //         const serializedState = JSON.stringify(state)
@@ -17,7 +17,7 @@ export const saveSettings = (state: AppRootType) => {
     }))
 }
 
-//* loading settings from localStorage function =====================================================================>>
+//* loading settings from localStorage function
 // export const loadState = () => {
 //     try {
 //         const serializedState = localStorage.getItem('state')

@@ -11,10 +11,6 @@
    border-radius: 15px;
 }
 
-.maxWarning {
-   color: red;
-}
-
 .inputItem {
    display: flex;
    justify-content: space-between;

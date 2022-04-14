@@ -13,7 +13,8 @@ type CounterPropsType = {
 }
 
 export const Counter: FC<CounterPropsType> = (props) => {
-   let btnIncDisabled = props.settingsActive || props.counterValue === props.maxValue
+
+   const btnIncDisabled = props.settingsActive || props.counterValue === props.maxValue
 
    return (
       <div className={s.counter}>
